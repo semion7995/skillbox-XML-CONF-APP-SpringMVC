@@ -6,8 +6,8 @@
 
     <import resource="appconfig-mvc.xml"/>
 
-    <context:component-scan base-package="org.example.*"/>
+    <context:component-scan base-package="org.example.web"/>
 
-    <context:property-placeholder location="classpath:application.properties"/>
+<!--    <context:property-placeholder location="classpath:application.properties"/>-->
 
 </beans>

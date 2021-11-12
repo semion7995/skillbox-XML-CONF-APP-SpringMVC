@@ -25,4 +25,6 @@
         <property name="templateEngine" ref="templateEngine" />
     </bean>
 
+<!--    <mvc:view-controller path="/books/shelf" view-name="book_shelf"/>-->
+
 </beans>
