@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 @RequestMapping(value = "books")
@@ -24,7 +25,7 @@ public class BookShelfController {
 
 
     @GetMapping("/shelf")
-    public String books(Model model){
+    public String books(Model model) {
         logger.info("get books shelf");
         model.addAttribute("book", new Book());
         model.addAttribute("bookList", bookService.getAllBooks());
@@ -32,9 +33,19 @@ public class BookShelfController {
     }
 
     @PostMapping("/save")
-    public String saveBook (Book book){
-        bookService.saveBook(book);
-        logger.info("current repository size: " + bookService.getAllBooks().size());
+    public String saveBook(Book book) {
+        if (!book.getAuthor().isEmpty() || !book.getTitle().isEmpty() || book.getSize() != null) {
+            bookService.saveBook(book);
+            logger.info("current repository size: " + bookService.getAllBooks().size());
+        }
+        return "redirect:/books/shelf";
+    }
+
+    @PostMapping("/removeByRegex")
+    public String removeBook(@RequestParam(value = "queryRegex") String queryRegex) {
+        bookService.removeBookByRegex(queryRegex);
         return "redirect:/books/shelf";
     }
 }
+
+

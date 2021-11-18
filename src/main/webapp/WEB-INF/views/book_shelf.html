@@ -49,16 +49,21 @@
         </table>
     </form>
 
-    <table>
-        <tr>
-            <td>
-                <input type="text" placeholder="id number"/>
-            </td>
-            <td>
-                <input type="submit" value="remove"/>
-            </td>
-        </tr>
-    </table>
+
+    <form method="post" th:action="@{/books/removeByRegex}">
+        <table>
+            <tr>
+                <td>
+                    <input type="text" placeholder="regex" th:name="queryRegex"/>
+                </td>
+                <td>
+                    <input type="submit" value="remove by regex"/>
+                </td>
+            </tr>
+        </table>
+    </form>
+
+
 
     <table id="books">
         <tr>
@@ -73,7 +78,6 @@
             <td th:text="${book.author}"></td>
             <td th:text="${book.title}"></td>
             <td th:text="${book.size}"></td>
-
         </tr>
 
     </table>
